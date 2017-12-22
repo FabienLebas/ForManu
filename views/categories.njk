@@ -22,7 +22,7 @@
 <script>
   {% for object in products %}
     document.getElementById("{{object.id}}").addEventListener("click", () => {
-      window.location = "http://localhost:3000/products/{{object.id}}";
+      window.location = "./products/{{object.id}}";
     });
   {% endfor %}
 </script>
