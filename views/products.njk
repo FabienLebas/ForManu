@@ -1,6 +1,15 @@
 {% extends "layout.njk" %}
 
 {% block content %}
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+  <style>
+    .checked {
+       color: orange;
+     }
+  </style>
+
+</head>
 <div class="container row">
   <div class="col-6">
     <a href="https://www.decathlon.fr/media/{{productInfos.image_path}}">
@@ -12,13 +21,19 @@
       <div class="card-body">
         <h4 class="card-title">{{productInfos.title}}</h4>
         <h3>{{productInfos.min_price}}€</h3>
-        <p>{{productInfos.rating}}/5</p>
+        {% for i in range(1, 6) -%}
+          {% if productInfos.rating >= (i) %}
+            <span class="fa fa-star checked"></span>
+            {% elif (productInfos.rating >= (i-0.5)) %}
+              <span class="fa fa-star-half-o checked"></span>
+              {% else %}
+              <span class="fa fa-star "></span>
+            {% endif %}
+        {%- endfor %}
         <p class="card-text">Conçu pour : {{productInfos.description}}</p>
         <a href="#" class="btn btn-primary">Ajouter au panier</a>
       </div>
     </div>
   </div>
 </div>
-
-
 {% endblock %}
